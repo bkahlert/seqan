@@ -323,7 +323,24 @@ For example, @Spec.Dna@ characters can be converted to @Spec.Dna5@ characters an
 The conversion can be lossy, e.g. when converting from @Spec.Dna5@ to @Spec.Dna@, all $N$ characters are replaced by $A$ characters.
 Similarly, when converting from $char$ to @Spec.Dna5@, all characters except ${A, a, C, c, G, g, T, t}$ are converted to $N$.
 */
-
+    
+template <typename TThis>
+class OString
+{
+public:
+    SEQAN_HOST_DEVICE typename seqan::Size<TThis>::Type
+    length()
+    {
+        return ::seqan::length(*static_cast<TThis*>(this));
+    }
+    
+    SEQAN_HOST_DEVICE typename seqan::Size<TThis const>::Type
+    length() const
+    {
+        return ::seqan::length(*(static_cast<const TThis*>(this)));
+    }
+};
+    
 template <typename TValue, typename TSpec = Alloc<> >
 class String;
 
