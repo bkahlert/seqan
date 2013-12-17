@@ -39,7 +39,6 @@ int xlength(TestString<TSpec> t)
 {
     return 10;
 }
-
     
 }
 
