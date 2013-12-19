@@ -2,20 +2,7 @@
 #include <seqan/sequence.h>  // CharString, ...
 #include <seqan/file.h>      // to stream a CharString into cout
 
-namespace seqan {
-    
-// ----------------------------------------------------------------------------
-// OOP layer for Strings.
-// ----------------------------------------------------------------------------
 
-template <typename TThis>
-SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
-OOPContainerConcept<TThis>::length()
-{
-    return seqan::length(*static_cast<TThis*>(this));
-}
-    
-}
 
 int main(int, char const **)
 {

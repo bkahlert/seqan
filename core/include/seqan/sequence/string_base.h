@@ -50,13 +50,6 @@ namespace seqan {
 
 template <typename TSpec = void>
 struct Alloc {};
-    
-template <typename TThis>
-class OOPContainerConcept {
-    public:
-        SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
-        length();
-};
 
 // TODO(holtgrew): This requires some work: explain it, maybe rather put this into a group since the text object appears in no function's signatures.
 
@@ -333,6 +326,30 @@ Similarly, when converting from $char$ to @Spec.Dna5@, all characters except ${A
 
 template <typename TValue, typename TSpec = Alloc<> >
 class String;
+    
+// ============================================================================
+// OOP layer for Strings.
+// ============================================================================
+    
+template <typename TValue, typename TSpec>
+SEQAN_HOST_DEVICE inline typename Size< String<TValue, TSpec> const>::Type
+length(String<TValue, TSpec> const & me);
+    
+template <typename THostspec>
+struct Packed;
+    
+template <typename TValue, typename THostspec>
+inline typename Size<String<TValue, Packed<THostspec> > const>::Type
+length(String<TValue, Packed<THostspec> > const & me);
+    
+template <typename TThis>
+class OOPContainerConcept {
+public:
+    SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
+    length() {
+        return seqan::length(*static_cast<TThis*>(this));
+    }
+};
     
 // ============================================================================
 // Metafunctions
