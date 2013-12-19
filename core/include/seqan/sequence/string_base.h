@@ -50,6 +50,13 @@ namespace seqan {
 
 template <typename TSpec = void>
 struct Alloc {};
+    
+template <typename TThis>
+class OOPContainerConcept {
+    public:
+        SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
+        length();
+};
 
 // TODO(holtgrew): This requires some work: explain it, maybe rather put this into a group since the text object appears in no function's signatures.
 
@@ -2143,27 +2150,7 @@ operator>>(TStream & source,
     SEQAN_CHECKPOINT;
     read(source, target);
     return source;
-}
-    
-// ----------------------------------------------------------------------------
-// OOP layer for Strings.
-// ----------------------------------------------------------------------------
-template <typename TThis>
-class OOPContainerConcept
-{
-public:
-    SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
-    length()
-    {
-        return seqan::length(*static_cast<TThis*>(this));
-    }
-    
-    SEQAN_HOST_DEVICE inline typename Size<TThis const>::Type
-    length() const
-    {
-        return length(*static_cast<const TThis*>(this));
-    }
-};
+} 
     
 }  // namespace seqan
 

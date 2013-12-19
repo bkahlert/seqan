@@ -476,7 +476,6 @@ template <typename TValue, typename THostspec>
 inline typename Size<String<TValue, Packed<THostspec> > const>::Type
 length(String<TValue, Packed<THostspec> > const & me) 
 {
-    std::cout << "s" << std::endl;
     if (empty(host(me)))
         return 0;
     else
