@@ -16,7 +16,15 @@
         
         // shows 'open in frameset' link if opened separately
 		if(window == window.parent && window.name != 'list') {
-        	$('#content').prepend('<div class="open-in-frame alert alert-info"><a href="index.html?p=' + $('html').attr('data-page') + window.location.hash + '"><strong>Looking for a different entry?</strong> Unhide the navigation bar and start your search.</a></div>'); 
+        	$('<div class="open-in-frame alert alert-info"><a href="index.html?p=' + $('html').attr('data-page') + window.location.hash + '"><strong>Looking for a different entry?</strong> Unhide the navigation bar</a> or start your search right here.</div>')
+        		.append($('\
+								<form role="form" id="search" action="index.html" method="get">\
+									<input type="search" name="q" class="form-control not-empty" placeholder="Search the API ..."\>\
+									<input type="hidden" name="p" value="' + $('html').attr('data-page') + '"\>\
+								</form></div>').submit(function() {
+								$(this).attr('action', 'index.html' + window.location.hash);
+							}))
+        		.prependTo('#content');
         }
         
         // if loaded in a frame, checks the URI's p parameter and uses it to load the

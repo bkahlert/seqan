@@ -863,7 +863,8 @@ ul.params {
  * Search
  */
 #search {
-	margin: 10px 10px 20px 10px;
+	html.list & { margin: 10px 10px 20px 10px; }
+	html:not(.list) & { margin: 10px 0 0 0; }
 	
 	.pre-action {	
 		margin-top: -10px;
