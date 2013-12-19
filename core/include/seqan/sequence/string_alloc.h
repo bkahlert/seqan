@@ -75,7 +75,7 @@ namespace seqan {
 ..include:seqan/sequence.h
 */
 template <typename TValue, typename TSpec>
-class String<TValue, Alloc<TSpec> > : public OString<String<TValue, Alloc<TSpec> > >
+class String<TValue, Alloc<TSpec> > : public OOPContainerConcept<String<TValue, Alloc<TSpec> > >
 {
 public:
     typename Value<String>::Type * data_begin;

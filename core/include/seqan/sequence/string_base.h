@@ -324,7 +324,6 @@ The conversion can be lossy, e.g. when converting from @Spec.Dna5@ to @Spec.Dna@
 Similarly, when converting from $char$ to @Spec.Dna5@, all characters except ${A, a, C, c, G, g, T, t}$ are converted to $N$.
 */
 
-   
 template <typename TValue, typename TSpec = Alloc<> >
 class String;
     
@@ -2146,26 +2145,25 @@ operator>>(TStream & source,
     return source;
 }
     
-    
-    
-    template <typename TThis>
-    class OString
+// ----------------------------------------------------------------------------
+// OOP layer for Strings.
+// ----------------------------------------------------------------------------
+template <typename TThis>
+class OOPContainerConcept
+{
+public:
+    SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
+    length()
     {
-    public:
-        SEQAN_HOST_DEVICE inline typename Size<TThis>::Type
-        length()
-        {
-            return seqan::length(*static_cast<TThis*>(this));
-        }
-        
-        SEQAN_HOST_DEVICE inline typename Size<TThis const>::Type
-        length() const
-        {
-            return length(*(static_cast<const TThis*>(this)));
-        }
-    };
-
+        return seqan::length(*static_cast<TThis*>(this));
+    }
     
+    SEQAN_HOST_DEVICE inline typename Size<TThis const>::Type
+    length() const
+    {
+        return length(*static_cast<const TThis*>(this));
+    }
+};
     
 }  // namespace seqan
 

@@ -142,7 +142,7 @@ struct PackedTraits_
 */
 
 template <typename TValue, typename THostspec>
-class String<TValue, Packed<THostspec> >
+class String<TValue, Packed<THostspec> > : public OOPContainerConcept<String<TValue, Packed<THostspec> > >
 {
 public:
     typedef typename Host<String>::Type THost;
@@ -476,6 +476,7 @@ template <typename TValue, typename THostspec>
 inline typename Size<String<TValue, Packed<THostspec> > const>::Type
 length(String<TValue, Packed<THostspec> > const & me) 
 {
+    std::cout << "s" << std::endl;
     if (empty(host(me)))
         return 0;
     else

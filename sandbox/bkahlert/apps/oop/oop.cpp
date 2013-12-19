@@ -17,7 +17,7 @@ int main(int, char const **)
     std::cout << "DnaString.length() works? " << (dnaString.length() == length(dnaString) ? "yes" : "no") << std::endl;
     
     seqan::String<seqan::Dna, seqan::Packed<> > packedDnaString = "GATTACA";
-    std::cout << "PackedDnaString.length() works? " << (dnaString.length() == length(dnaString) ? "yes" : "no") << std::endl;
+    std::cout << "PackedDnaString.length() works? " << (packedDnaString.length() == length(packedDnaString) ? "yes" : "no") << std::endl;
     
     return 1;
 }
